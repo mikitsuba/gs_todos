@@ -1,5 +1,5 @@
 import express from "express";
-import { readAllTodoData } from "../controllers/todo.controller.js";
+import { readAllTodoData, createTodoData } from "../controllers/todo.controller.js";
 
 export const todoRouter = express.Router();
 
