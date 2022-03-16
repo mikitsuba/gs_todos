@@ -1,4 +1,4 @@
-import { getAllTodoData, insertTodoData } from "../services/todo.service.js";
+import { getAllTodoData, getTodayTodoData, insertTodoData } from "../services/todo.service.js";
 
 export const readAllTodoData = async (req, res, next) => {
   try {
@@ -11,6 +11,19 @@ export const readAllTodoData = async (req, res, next) => {
   } catch (e) {
     return res.status(400).json({ status: 400, message: e.message });
   }
+};
+
+export const readTodayTodoData = async (req, res, next) => {
+    try {
+      const result = await getTodayTodoData();
+      return res.status(200).json({
+        status: 200,
+        result: result,
+        message: "Successfully get Today Todo Data!",
+      });
+    } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+    }
 };
 
 export const createTodoData = async (req, res, next) => {

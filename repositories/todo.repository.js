@@ -19,7 +19,21 @@ export const findAll = async () => {
     } catch (e) {
       throw Error("Error while getting Todo Data");
     }
-  };
+};
+
+export const findToday = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("todos")
+        .select()
+        .lte("deadline", new Date().toISOString())
+        .order("deadline", { ascending: true })
+        .order("todo", { ascending: true });
+      return data;
+    } catch (e) {
+      throw Error("Error while getting Todo Data");
+    }
+};
 
 export const store = async ({ params }) => {
   try {
